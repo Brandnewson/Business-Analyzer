@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Analysis
+{% endblock %}
+
+{% block main %}
+
+<!--stock name and description-->
+<div class="container-fluid">
+        <h2> {{name}}({{symbol}}) </h2>
+        <hr class="my-4">
+        <p style=background-color: "#5C6D70"> <h5>Stock Description: </h5> <p>{{desc}}</p>
+    </div>
+    </hr>
+        <hr class="my-4">
+<br>
+
+
+<!--Table-->
+<div class="container-fluid">
+<!--General Ratios & Stats-->
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <h5>Ratios</h5>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>PE ratio: {{PE}}</td>
+        <td>Beta: {{beta}}</td>
+      </tr>
+      <tr>
+        <td>PB Ratio: {{PB}}</td>
+        <td>Market Cap: ${{market_cap}}</td>
+      </tr>
+    </tbody>
+  </table>
+<br>
+
+<!--Profitability Ratio-->
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <h5>Profitability</h5>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Gross Profit: {{gross_profit}}</td>
+        <td>Net Income: ${{net_income}}</td>
+      </tr>
+      <tr>
+        <td>Revenue: ${{revenue}}</td>
+        <td>Revenue: ${{revenue}}</td>
+      </tr>
+        <td><tb>Gross Margin: {{gross_margin}}%</tb></td>
+        <td><tb>Net Margin: {{net_margin}}%</tb></td>
+      </tr>
+
+    </tbody>
+ </table>
+<br>
+
+<!--Balance Sheet-->
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <h5>Balance Sheet</h5>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Cash: ${{cash}}</td>
+        <td>DE Ratio: {{DE}}</td>
+      </tr>
+      <tr>
+        <td>Cash per Share: ${{cash_ps}}</td>
+        <td>Current Ratio: {{current_ratio}}</td>
+      </tr>
+      <tr>
+        <td>Total Debt: {{total_debt}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+            <a class="btn btn-info btn-lg" href="dcf" role="button">Intrinsic Calculator!</a>
+
+
+</div>
+{% endblock %}
