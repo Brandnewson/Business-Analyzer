@@ -1,0 +1,167 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    DCF
+{% endblock %}
+
+{% block main %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+<!--stock name and description-->
+<div class="container-fluid">
+
+<h2> {{name}}({{symbol}}{{prompt}}) </h2>
+<hr class="my-4">
+  <div class="row">
+    <div class="col-sm-6">
+    Ticker Symbol:
+    <form action ="/dcf" method ="POST">
+    <div class="form-inline form-control-lg">
+      <input autocomplete="off" placeholder ="TICKER" class="form-control" autofocus name="symbol" type="input">
+    </div>
+    </div>
+
+  <div class="col-sm-6">
+    ST investment:
+    <div class="form-inline form-control-lg">
+      <input autocomplete="off" placeholder ="in thousands" class="form-control" autofocus name="ST_investment" type="input">
+    </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3">
+    Low Cash Flow Growth Rate:(Yr 1-5)
+    <form action ="/dcf" method ="POST">
+    <div class="form-inline form-control-lg">
+      <input autocomplete="off" placeholder ="%" class="form-control" autofocus name="gr_1" type="input">
+    </div>
+    </div>
+
+  <div class="col-sm-3">
+    Low Cash Flow Growth Rate(Yr 6-10):
+    <div class="form-inline form-control-lg">
+      <input autocomplete="off" placeholder ="%" class="form-control" autofocus name="gr_2" type="input">
+    </div>
+    </div>
+  <div class="col-sm-3">
+    Mean Cash Flow Growth Rate(Yr 1-5):
+    <div class="form-inline form-control-lg">
+      <input autocomplete="off" placeholder ="%" class="form-control" autofocus name="grm_1" type="input">
+    </div>
+    </div>
+  <div class="col-sm-3">
+    Mean Cash Flow Growth Rate(Yr 6-10)
+    <div class="form-inline form-control-lg">
+      <input autocomplete="off" placeholder ="%" class="form-control" autofocus name="grm_2" type="input">
+    </div>
+    </div>
+  </div>
+
+
+        <p style=background-color: "#5C6D70">
+    </div>
+    </hr>
+        <hr class="my-4">
+<br>
+
+<!--DCF-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6">
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <h5>DCF Calculator</h5>
+                    <a href="https://sg.finance.yahoo.com/quote/{{symbol}}/balance-sheet?p={{symbol}}" target="_blank">Balance Sheet</a>
+                    <a href="https://sg.finance.yahoo.com/quote/{{symbol}}/analysis?p={{symbol}}" target="_blank">  Analysis</a>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Current Share Price: ${{price}}</td>
+                  </tr>
+                  <tr>
+                    <td>Outstanding Shares: {{shares}} shares</td>
+                  </tr>
+                  <tr>
+                    <td>Operating Cash Flow(current): ${{OCF}}</td>
+                  </tr>
+                  <tr>
+                    <td>Total Debt: ${{debt}}</td>
+                  </tr>
+                  <tr>
+                    <td>Cash: ${{cash}}</td>
+                  </tr>
+                  <tr>
+                    <td>Beta: {{beta}}</td>
+                  </tr>
+                  <tr>
+                    <td>Discount Rate: {{d_rate}}%</td>
+                  </tr>
+                  <tr>
+                    <td>Currency: {{currency}} </td>
+                  </tr>
+                  <tr>
+                    <td><button class="btn btn-primary" type="submit">Calculate Intrinsic</button></td>
+                  </tr>
+                  </form>
+
+
+                </tbody>
+            </table>
+    </div>
+
+    <div class="col-sm-3">
+                  <table class="table table-hover">
+                <thead>
+                    <h6>Intrinsic Calculations(Low)</h6>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>PV of 10 yr Cash Flows: ${{pv}} Million </td>
+                  </tr>
+                  <tr>
+                    <td>Intrinsic Value before Cash/Debt: ${{intrinsic}}</td>
+                  </tr>
+                  <tr>
+                    <td>less debt per share: ${{less_debt}}</td>
+                  </tr>
+                  <tr>
+                    <td>Plus (+) Cash Per Share: ${{plus_cash}} </td>
+                  </tr>
+                  <tr>
+                    <td><tb>Final Intrinsic Value(Low): ${{final_intrinsic}}</tb></td>
+                  </tr>
+                </tbody>
+            </table>
+    </div>
+    <div class="col-sm-3">
+                  <table class="table table-hover">
+                <thead>
+                    <h6>Intrinsic Calculations (Mean)</h6>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>PV of 10 yr Cash Flows: ${{pvm}} Million </td>
+                  </tr>
+                  <tr>
+                    <td>Intrinsic Value before Cash/Debt: ${{intrinsicm}}</td>
+                  </tr>
+                  <tr>
+                    <td>less debt per share: ${{less_debt}}</td>
+                  </tr>
+                  <tr>
+                    <td>Plus (+) Cash Per Share: ${{plus_cash}} </td>
+                  </tr>
+                  <tr>
+                    <td><tb>Final Intrinsic Value(Mean): ${{final_intrinsicm}}</tb></td>
+                  </tr>
+                </tbody>
+
+            </table>
+
+  </div>
+
+</div>
+{% endblock %}
