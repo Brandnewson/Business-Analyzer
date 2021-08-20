@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Analysis
+{% endblock %}
+
+{% block main %}
+
+
+    <form action ="/analysis" method ="POST">
+        <div class="form-group form-control-lg">
+            <div class="page-center">
+                <input autocomplete="off" placeholder ="Ticker Symbol" class="form-control" autofocus name="symbol" type="text">
+            </div>
+        </div>
+            <div class="below-center">
+                <button class="btn btn-primary" type="submit">Analyse</button>
+            </div>
+            <div class="above-center">
+                <h2>Key in any ticker symbol of choice, and be greeted with instant calculations and information!</h2>
+            </div>
+
+
+    </form>
+{% endblock %}
